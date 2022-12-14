@@ -27,9 +27,12 @@ var schema = buildSchema(`
 `);
 
 var root = {
+  // Récupération de tous les produits
   products: async () => {
     const products_api =
+    // appel api openfoodfacts
       "https://world.openfoodfacts.org/api/v2/search?fields=id,code,product_name";
+      // appel de mon api
     const stock_api = "http://localhost:8080/api/products";
 
     const products_response = await fetch(products_api);
@@ -49,6 +52,7 @@ var root = {
     });
   },
 
+  // Récupération d'un produit par son id
   product_by_id: async ({ id }) => {
     const product_api = `https://world.openfoodfacts.org/api/v2/search?fields=id,code,product_name&code=${id}`;
     const stock_api = `http://localhost:8080/api/products/${id}`;
@@ -66,6 +70,7 @@ var root = {
     };
   },
 
+  // Récupération d'un produit par son nom
   product_by_name: async ({ name }) => {
     const product_api = `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${name}&action=process&fields=id,code,product_name&json=1`;
 
@@ -84,6 +89,7 @@ var root = {
     };
   },
 
+  // Insertion d'un produit et de son stock
   insert_product: async ({ id, stock }) => {
     const product_api = `https://world.openfoodfacts.org/api/v2/search?fields=id,code,product_name&code=${id}`;
     const stock_api = `http://localhost:8080/api/products`;
@@ -110,7 +116,7 @@ var root = {
     };
   },
 
-
+  // Modification du stock d'un produit
   increment_product: async ({ id, quantity }) => {
     const product_api = `https://world.openfoodfacts.org/api/v2/search?fields=id,code,product_name&code=${id}`;
     const stock_api = `http://localhost:8080/api/products/stock/${id}`;
@@ -136,6 +142,7 @@ var root = {
     };
   },
   
+  // Suppression d'un produit 
   delete_product: async ({ id }) => {
     const product_api = `https://world.openfoodfacts.org/api/v2/search?fields=id,code,product_name&code=${id}`;
     const stock_api = `http://localhost:8080/api/products/${id}`;
