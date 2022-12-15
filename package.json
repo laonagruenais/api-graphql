@@ -1,0 +1,17 @@
+{
+  "name": "api-graphql",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/laonagruenais/api-graphql.git",
+  "author": "LaonaGruenais <emmie.laona@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-graphql": "^0.12.0",
+    "graphql": "^16.6.0",
+    "node-fetch": "2"
+  }
+}
